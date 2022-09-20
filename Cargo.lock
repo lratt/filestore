@@ -708,7 +708,6 @@ dependencies = [
  "chrono",
  "dotenv",
  "futures-util",
- "hex",
  "mime_guess",
  "nanorand",
  "sqlx",

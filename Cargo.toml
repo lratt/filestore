@@ -16,7 +16,6 @@ base64 = "0.13.0"
 chrono = { version = "0.4.22" }
 dotenv = "0.15.0"
 futures-util = "0.3.24"
-hex = "0.4.3"
 mime_guess = "2.0.4"
 nanorand = "0.7.0"
 sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-rustls", "chrono"] }
