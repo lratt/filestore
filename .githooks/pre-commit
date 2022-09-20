@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if ! cargo clippy -q; then
+    printf 'clippy failed\n'
+    exit 1
+fi
+
+if ! cargo fmt -q --check; then
+    printf 'fmt check failed\n'
+    exit 1
+fi
+
+if ! cargo sqlx prepare -- -q; then
+    printf 'failed to prepare offline sqlx data\n'
+    exit 1
+fi
+
+git add sqlx-data.json

@@ -1,0 +1,129 @@
+{
+  "db": "PostgreSQL",
+  "0a62b0a43492169e5c7b61ee136a0bb50d99b4ef4113af085ebff084c180a50a": {
+    "describe": {
+      "columns": [
+        {
+          "name": "key",
+          "ordinal": 0,
+          "type_info": "Bpchar"
+        },
+        {
+          "name": "filename",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "expires",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "date_created",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT * FROM uploads WHERE expires < current_timestamp"
+  },
+  "6be8f8daf251aff616c80af12307b06b9d2d296284d1d412dde115f992bfc39f": {
+    "describe": {
+      "columns": [
+        {
+          "name": "key",
+          "ordinal": 0,
+          "type_info": "Bpchar"
+        },
+        {
+          "name": "filename",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "expires",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "date_created",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar"
+        ]
+      }
+    },
+    "query": "SELECT * FROM uploads WHERE key = $1"
+  },
+  "8e92d30269ee6961149620dd9f23067478a0df754f3df3be8f455dfd699d1dd3": {
+    "describe": {
+      "columns": [
+        {
+          "name": "key",
+          "ordinal": 0,
+          "type_info": "Bpchar"
+        },
+        {
+          "name": "filename",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "expires",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "date_created",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar",
+          "Varchar",
+          "Timestamptz"
+        ]
+      }
+    },
+    "query": "INSERT INTO uploads (key, filename, expires) VALUES ($1, $2, $3) RETURNING *"
+  },
+  "b326cba55a10e943232cee2aa5ab2dd1dd2ffda47d6d83fd5b6add9602595775": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Bpchar"
+        ]
+      }
+    },
+    "query": "DELETE FROM uploads WHERE key = $1"
+  }
+}

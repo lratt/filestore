@@ -18,7 +18,7 @@ dotenv = "0.15.0"
 futures-util = "0.3.24"
 mime_guess = "2.0.4"
 nanorand = "0.7.0"
-sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-rustls", "chrono"] }
+sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-rustls", "chrono", "offline"] }
 tokio = { version = "1.21.1", features = ["macros"] }
 tokio-util = { version = "0.7.4", features = ["io"] }
 tower-http = { version = "0.3.4", features = ["trace"] }
