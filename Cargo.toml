@@ -1,0 +1,27 @@
+[package]
+name = "filestore"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/lratt/filestore"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.65"
+async-trait = "0.1.57"
+aws-config = "0.48.0"
+aws-sdk-s3 = "0.18.0"
+axum = { version = "0.5.10", features = ["multipart"] }
+base64 = "0.13.0"
+chrono = { version = "0.4.22" }
+dotenv = "0.15.0"
+futures-util = "0.3.24"
+hex = "0.4.3"
+mime_guess = "2.0.4"
+nanorand = "0.7.0"
+sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-rustls", "chrono"] }
+tokio = { version = "1.21.1", features = ["macros"] }
+tokio-util = { version = "0.7.4", features = ["io"] }
+tower-http = { version = "0.3.4", features = ["trace"] }
+tracing = "0.1.36"
+tracing-subscriber = "0.3.15"
