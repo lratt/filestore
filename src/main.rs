@@ -18,6 +18,8 @@ mod util;
 #[macro_use]
 extern crate sqlx;
 
+static MIGRATOR: sqlx::migrate::Migrator = sqlx::migrate!();
+
 async fn delete_expired(pg_pool: PgPool, s3_client: s3::Client) -> anyhow::Result<()> {
     let mut tx = pg_pool.begin().await?;
     let mut get_stream =
@@ -65,6 +67,8 @@ async fn main() -> anyhow::Result<()> {
         .max_connections(10)
         .connect(&std::env::var("DATABASE_URL").unwrap())
         .await?;
+
+    MIGRATOR.run(&pg_pool).await?;
 
     // delete expired uploads every 30 seconds
     {
