@@ -66,7 +66,7 @@ async fn handle_file_part(
         r#"INSERT INTO uploads (key, filename, expires) VALUES ($1, $2, $3) RETURNING *"#,
         key,
         file_name,
-        Utc::now() + chrono::Duration::seconds(30)
+        Utc::now() + chrono::Duration::days(7)
     )
     .fetch_one(&pg_pool)
     .await?;
