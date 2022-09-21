@@ -5,6 +5,7 @@ use anyhow::Context;
 use aws_sdk_s3 as s3;
 use axum::{http::Uri, Extension};
 use futures_util::TryStreamExt;
+use s3::types::SdkError;
 use sqlx::PgPool;
 use std::{net::SocketAddr, str::FromStr, time::Duration};
 use tower_http::trace::TraceLayer;
@@ -63,6 +64,12 @@ async fn main() -> anyhow::Result<()> {
         .await;
 
     let s3_client = s3::Client::new(&aws_cfg);
+    match s3_client.create_bucket().bucket("uploads").send().await {
+        Err(SdkError::ServiceError { err, .. }) if err.is_bucket_already_exists() => {}
+        Err(SdkError::ServiceError { err, .. }) if err.is_bucket_already_owned_by_you() => {}
+        Err(e) => return Err(e.into()),
+        _ => {}
+    };
     let pg_pool = sqlx::postgres::PgPoolOptions::default()
         .max_connections(10)
         .connect(&std::env::var("DATABASE_URL").unwrap())
